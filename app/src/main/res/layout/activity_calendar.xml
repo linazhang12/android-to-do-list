@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".calendar">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CalendarView
+
+
+            android:id="@+id/calendarView"
+            android:layout_width="363dp"
+            android:layout_height="315dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:firstDayOfWeek="1"
+            android:minDate="06/01/2018"
+            android:showWeekNumber="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:weekSeparatorLineColor="#FFA07A"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/the_list_cal"
+        android:layout_width="340dp"
+        android:layout_height="183dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginStart="4dp"
+        android:divider=" #FAFAFA"
+        android:dividerHeight="16dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:descendantFocusability="blocksDescendants"></ListView>
+
+
+</android.support.constraint.ConstraintLayout>
