@@ -2,16 +2,12 @@ package com.example.lz.firstproject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,7 +15,7 @@ public class calendar extends AppCompatActivity {
 
     String date;
     DB database;
-    ArrayList<listviewcode> eventsOfDay;
+    ArrayList<ToDoTask> eventsOfDay;
     custom_adapter arrayAdapter;
     ListView the_list_cal;
 
@@ -35,6 +31,7 @@ public class calendar extends AppCompatActivity {
 
         database = new DB(this,null,null,2);
 
+        //create and set calendar events
         CalendarView calendarView=(CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
@@ -43,7 +40,7 @@ public class calendar extends AppCompatActivity {
                                             int dayOfMonth) {
 
                 month = month + 1;
-                date = (year + "-" + month + "-" + dayOfMonth);
+                date = year + "-" + month + "-" + dayOfMonth;
                 eventsOfDay = database.printEvents(date);
 
                 arrayAdapter = new custom_adapter(getApplicationContext(),eventsOfDay);
@@ -53,11 +50,11 @@ public class calendar extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                        //onclick, allow users to delete
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(calendar.this);
                         final int positionToRemove = position;
 
-                        alertDialogBuilder.setTitle("Are you sure you want to delete?");
-                        alertDialogBuilder
+                        alertDialogBuilder.setTitle("Are you sure you want to delete?")
                                 .setMessage("Please select one")
                                 .setCancelable(true)
                                 .setPositiveButton("Yes",new DialogInterface.OnClickListener() {

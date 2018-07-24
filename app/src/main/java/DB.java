@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,6 +24,7 @@ public class DB extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+    //create table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_PRODUCTS + "("+
@@ -42,8 +42,8 @@ public class DB extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean addItem(listviewcode item){
-
+    //insert into table
+    public boolean addItem(ToDoTask item){
         ContentValues values = new ContentValues();
         values.put(TASK, item.getTask());
         values.put(IMPORTANCE, item.getImportance());
@@ -54,7 +54,7 @@ public class DB extends SQLiteOpenHelper{
         long result = db.insert(TABLE_PRODUCTS, null, values);
         db.close();
 
-        if (result == -1){
+       if (result == -1){
             return false;
         }
         else{
@@ -62,18 +62,19 @@ public class DB extends SQLiteOpenHelper{
         }
     }
 
-    public void deleteItem(listviewcode item){
+    //delete from database
+    public void deleteItem(ToDoTask item){
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_PRODUCTS,  TASK + " = ? ", new String[] {item.getTask()});
     }
 
-    public ArrayList<listviewcode> printEvents(String date){
-        ArrayList<listviewcode> eventsOnDay =new ArrayList<listviewcode>();
+    public ArrayList<ToDoTask> printEvents(String date){
+        ArrayList<ToDoTask> eventsOnDay =new ArrayList<ToDoTask>();
         SQLiteDatabase db  = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT  * FROM " + TABLE_PRODUCTS + " WHERE " +  DATE + " = ? ", new String[] {date});
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            listviewcode item = new listviewcode();
+            ToDoTask item = new ToDoTask();
             item.setTask(c.getString(c.getColumnIndex(DB.TASK)));
             item.setImportance(c.getString(c.getColumnIndex(DB.IMPORTANCE)));
             item.setDescription(c.getString(c.getColumnIndex(DB.DESCRIPTION)));

@@ -1,18 +1,17 @@
 <resources>
     <string name="app_name">My To Do List</string>
-    <string name="buttontext">add new</string>
+    <string name="buttontext">Add New</string>
     <string name="name_text">Add</string>
     <string name="hint_text">Type in Task</string>
     <string name="hint_d">Type in Description</string>
-    <string name="button_text">add</string>
+    <string name="button_text">Add</string>
     <string name="urgent_text">Urgent</string>
     <string name="very_important_text">Very Important</string>
     <string name="somewhat_important_text">Somewhat Important</string>
     <string name="description_text">Description</string>
-    <string name="set_a_notification">Set a Notification</string>
-    <string name="calendar">calendar</string>
+    <string name="calendar">Calendar</string>
     <string name="default_date">mm/dd/yyyy</string>
-    <string name="to_do_today">to do today</string>
-    <string name="select_date">select date</string>
-    <string name="today_s_events">today\'s events</string>
+    <string name="to_do_today">To Do Today</string>
+    <string name="select_date">Select Date</string>
+    <string name="today_s_events">Today\'s Events</string>
 </resources>

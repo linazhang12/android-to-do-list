@@ -19,7 +19,8 @@ import java.util.Calendar;
 
 
 public class CreateItem extends AppCompatActivity {
-    int Year, Month, Day, date;
+    int Year, Month, Day;
+    String Date;
     private TextView showDate;
     private Button enterDate;
 
@@ -48,6 +49,7 @@ public class CreateItem extends AppCompatActivity {
         return new DatePickerDialog(this, datePickerListener, Year, Month, Day);
     }
 
+    //sets the selected date from the datepicker
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
@@ -60,11 +62,12 @@ public class CreateItem extends AppCompatActivity {
 
     public void saveButtonClicked(View view) {
 
+        //get the values from the input fields and retrieve them
         RadioGroup rg = findViewById(R.id.radiogroup);
         String selectedRadioValue = ((RadioButton) findViewById(rg.getCheckedRadioButtonId())).getText().toString();
         String d_text = ((EditText) findViewById(R.id.d_text)).getText().toString();
         String editText2 = ((EditText) findViewById(R.id.editText2)).getText().toString();
-
+        Date = Year+"-"+Month+"-"+Day;
         if (editText2.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a task", Toast.LENGTH_SHORT).show();
         } else if (d_text.equals("")) {
@@ -73,17 +76,14 @@ public class CreateItem extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter a date", Toast.LENGTH_SHORT).show();
         }
         else {
+            //pass everything to the mainactivity
             Intent i = new Intent();
             i.putExtra(Intent_Constants.INTENT_MESSAGE_FIELD, editText2);
             i.putExtra(Intent_Constants.INTENT_RADIO, selectedRadioValue);
             i.putExtra(Intent_Constants.INTENT_DESCRIPTION, d_text);
-            i.putExtra(Intent_Constants.DAY, Day);
-            i.putExtra(Intent_Constants.MONTH, Month);
-            i.putExtra(Intent_Constants.YEAR, Year);
+            i.putExtra(Intent_Constants.DATE, Date);
             setResult(Intent_Constants.INTENT_REQUEST_CODE, i);
             finish();
         }
     }
 }
-
-

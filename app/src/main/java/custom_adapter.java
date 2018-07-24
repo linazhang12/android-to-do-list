@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class custom_adapter extends ArrayAdapter<listviewcode>{
-    private List<listviewcode> item= new ArrayList<>();
+public class custom_adapter extends ArrayAdapter<ToDoTask>{
+    private List<ToDoTask> item= new ArrayList<>();
 
-    public custom_adapter(@NonNull Context context, ArrayList<listviewcode> item) {
+    public custom_adapter(@NonNull Context context, ArrayList<ToDoTask> item) {
         super(context, 0 , item);
         this.item = item;
     }
@@ -29,7 +29,8 @@ public class custom_adapter extends ArrayAdapter<listviewcode>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.custom_row, parent, false);
         }
 
-        listviewcode currenttask = item.get(position);
+        //get item and set the its task, importance, and description with the object's value
+        ToDoTask currenttask = item.get(position);
 
         TextView task = convertView.findViewById(R.id.task);
         task.setText(currenttask.getTask());

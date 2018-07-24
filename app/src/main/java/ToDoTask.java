@@ -1,16 +1,14 @@
 package com.example.lz.firstproject;
 
-public class listviewcode {
+public class ToDoTask {
     private String task;
     private String importance;
     private String description;
     private String date;
 
-    public listviewcode(){
+    public ToDoTask(){}
 
-    }
-
-    public listviewcode(String task, String importance, String description, String date) {
+    public ToDoTask(String task, String importance, String description, String date) {
         this.task = task;
         this.importance = importance;
         this.description = description;
